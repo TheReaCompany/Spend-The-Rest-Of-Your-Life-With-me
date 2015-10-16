@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Nicole & Alexander October 7, 2011</title>
+	<link rel="stylesheet" type="text/css" href="css/all.css" media="all"/>
+	<script type="text/javascript" src="http://use.typekit.com/ypf7jsf.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.main.js"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
+	<meta property="og:title" content="Nicole Miller and Alexander Rea - October 7, 2011"/>
+    <meta property="og:type" content="activity"/>
+    <meta property="og:url" content="http://www.spendthrerestofyourlifewith.me"/>
+    <meta property="og:image" content="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/logo3.png"/>
+    <meta property="og:site_name" content="Spend The Rest of Your Life With .Me"/>
+    <meta property="fb:app_id" content="213072442078634"/>
+    <meta property="fb:admins" content="548943308"/>
+    <meta property="og:description"
+          content="Nicole Miller marries Alexander Rea on Friday October 7th, 2011 at Aurora in Williamsburg Brooklyn"/>
+    
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<style type="text/css">
+  #map_canvas { height: 700px; width: 700px;}
+  
+</style>
+
+    <!-- pop up window -->
+    <script type="text/javascript"> 
+ 
+		function addEvent(elm, evType, fn, useCapture){if(elm.addEventListener){elm.addEventListener(evType, fn, useCapture);return true;}else if (elm.attachEvent){var r = elm.attachEvent('on' + evType, fn);return r;}else{elm['on' + evType] = fn;}}
+			var newWindow = null;
+
+			function closeWin(){
+				if (newWindow != null){
+					if(!newWindow.closed)
+						newWindow.close();
+				}
+			}
+
+			function popUpWin(url, type, strWidth, strHeight){
+
+				closeWin();
+
+				type = type.toLowerCase();
+
+				if (type == "fullscreen"){
+					strWidth = screen.availWidth;
+					strHeight = screen.availHeight;
+				}
+				var tools="";
+				if (type == "standard") tools = "resizable,toolbar=no,location=no,scrollbars=yes,menubar=no,width="+strWidth+",height="+strHeight+",top=50,left=50";
+				if (type == "console" || type == "fullscreen") tools = "resizable,toolbar=no,location=no,scrollbars=no,width="+strWidth+",height="+strHeight+",top=0,left=0";
+				newWindow = window.open(url, "newWin", tools);
+				newWindow.focus();
+			}
+
+			function doPopUp(e)
+			{
+			//set defaults - if nothing in rel attrib, these will be used
+			var t = "standard";
+			var w = "400";
+			var h = "500";
+			//look for parameters
+			attribs = this.rel.split(" ");
+			if (attribs[1]!=null) {t = attribs[1];}
+			if (attribs[2]!=null) {w = attribs[2];}
+			if (attribs[3]!=null) {h = attribs[3];}
+			//call the popup script
+			popUpWin(this.href,t,w,h);
+			//cancel the default link action if pop-up activated
+			if (window.event) 
+				{
+				window.event.returnValue = false;
+				window.event.cancelBubble = true;
+				} 
+			else if (e) 
+				{
+				e.stopPropagation();
+				e.preventDefault();
+				}
+			}
+
+			function findPopUps()
+			{
+			var popups = document.getElementsByTagName("a");
+			for (i=0;i<popups.length;i++)
+				{
+				if (popups[i].rel.indexOf("popup")!=-1)
+					{
+					// attach popup behaviour
+					popups[i].onclick = doPopUp;
+					// add popup indicator
+					// if (popups[i].rel.indexOf("noicon")==-1)
+					// 	{
+					// 	popups[i].style.backgroundImage = "url(pop-up.gif)";
+					// 	popups[i].style.backgroundPosition = "0 center";
+					// 	popups[i].style.backgroundRepeat = "no-repeat";
+					// 	popups[i].style.paddingLeft = "15px";
+					// 	}
+					// add info to title attribute to alert fact that it's a pop-up window
+					popups[i].title = popups[i].title + " [Opens in pop-up window]";
+					}
+				}
+			}
+
+			addEvent(window, "load", findPopUps, false);
+	
+</script>
+
+<script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(40.71851,-73.971591),
+          zoom: 13,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+		
+		var ctaLayer = new google.maps.KmlLayer('http://spendtherestofyourlifewithme.s3.amazonaws.com/kml/Nicole_Alexander.kml', {preserveViewport:true});
+		ctaLayer.setMap(map);
+
+
+        var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+          map: map
+        });
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+          infowindow.close();
+          var place = autocomplete.getPlace();
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(13);
+          }
+
+          var image = new google.maps.MarkerImage(
+              place.icon,
+              new google.maps.Size(71, 71),
+              new google.maps.Point(0, 0),
+              new google.maps.Point(17, 34),
+              new google.maps.Size(35, 35));
+          marker.setIcon(image);
+          marker.setPosition(place.geometry.location);
+
+          var address = '';
+          if (place.address_components) {
+            address = [(place.address_components[0] &&
+                        place.address_components[0].short_name || ''),
+                       (place.address_components[1] &&
+                        place.address_components[1].short_name || ''),
+                       (place.address_components[2] &&
+                        place.address_components[2].short_name || '')
+                      ].join(' ');
+          }
+
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+          infowindow.open(map, marker);
+        });
+
+        // Sets a listener on a radio button to change the filter type on Places
+        // Autocomplete.
+        function setupClickListener(id, types) {
+          var radioButton = document.getElementById(id);
+          google.maps.event.addDomListener(radioButton, 'click', function() {
+            autocomplete.setTypes(types);
+          });
+        }
+
+        setupClickListener('changetype-all', []);
+        setupClickListener('changetype-establishment', ['establishment']);
+        setupClickListener('changetype-geocode', ['geocode']);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+</head>
+<body>
+
+	<!-- gallery-holder -->
+	<div class="gallery-holder">
+		<!-- socials -->
+		<ul class="socials">
+			
+			<li><a class="twitter" rel="popup standard 450 450" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.spendtherestofyourlifewith.me&amp;text=Type here&amp;hashtags=NandA&amp;related=nicole_w_miller, alexanderrea">Tweet</a></li>
+			<li><a class="mail" href="mailto:rsvp@spendtherestofyourlifewith.me?subject=Nicole+Alexander">Email Nicole+Alexander</a></li>
+		</ul>
+		<!-- gallery -->
+		<div class="gallery">
+			<!-- list -->
+			<div class="list list1">
+				<ul>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-1.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-4.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-6.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-8.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-10.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-12.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-14.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-16.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-1.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-3.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-5.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-7.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-9.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-11.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-13.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-15.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+				</ul>
+			</div>
+			<!-- visual -->
+			<div class="visual">
+				<img src="images/img-visual.gif" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" />
+				<h1>From the desks and hearts of</h1>
+				<strong class="logo"><a href="#">Nicole + Alexander</a></strong>
+				<div class="details">
+					<ul>
+						<li>Friday the 7th of October</li>
+						<li>&nbsp; Two Thousand and Eleven</li>
+					</ul>
+				</div>
+			</div>
+			<!-- list -->
+			<div class="list list2">
+				<ul>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-1.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-3.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-5.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-7.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-9.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-11.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-13.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-15.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-2.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-4.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-6.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-8.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-10.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-12.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-14.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+					<li><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/photos/Nicole-Miller-Alexander-Rea-Wedding-100711-16.jpg" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></li>
+				</ul>
+			</div>
+			<a href="#" class="prev">past</a>
+			<a href="#" class="next">future</a>
+		</div>
+	</div>
+	<!-- header -->
+	<div id="header">
+		<!-- nav-area -->
+		<div class="nav-area">
+			<!-- nav -->
+			<ul id="nav">
+				<li><a href="mailto:rsvp@spendtherestofyourlifewith.me?subject=RSVP">RSVP</a></li>
+				<li><a href="#location">LOCATION</a></li>
+				<li><a href="#">TRAVEL</a></li>
+				<li><a href="#">HOTELS</a></li>
+				<li><a href="#registry">REGISTRY</a></li>
+				<li><a href="#">AR+NM</a></li>
+				<li><a href="#">FAQ</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- content -->
+	<div id="content">
+		<!-- holder -->
+		<div class="holder">
+			<!-- frame -->
+			<div class="frame">
+				<!-- post -->
+				<div class="post">
+					<h2><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/bg-post-heading.png" alt="we're getting marrierd" /></h2>
+					<p>First things first. Make sure you RSVP please. You can do that <a href="#">HERE.</a></p>
+					<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=186215581441158&amp;xfbml=1"></script><fb:like href="spendtherestofyourlifewith.me" send="true" width="450" show_faces="false" font="arial"></fb:like>				</div>
+				<!-- post -->
+				<a name="location"></a>
+				<div class="post">
+					<h2><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/bg-post-heading2.png" alt="xo marks the spot" /></h2>
+					<p>It is very important for us to get married where we love and live. And what a better place to do it than New York City/Brooklyn.  We plan on an evening of office romance, dinner, and dancing. The event will be held at one of our favorite local spots, Aurora Restaurant @ 70 Grand St. in Williamsburg, Brooklyn begininng at 7PM.  Take the L train to the Bedford Ave stop, walk left of Bedford Ave., right on Grand till you hit Wythe.  If you don't feel like walking in your party shoes, take a taxi to Grand and Wythe in Williamsburg. </p>
+					<p>Also check out some of our other favorite places on the map.</p>
+					<ul>
+						<li><a href="#">MAP</a></li>
+						<li><a href="#">AURORA ON FACEBOOK</a></li>
+					</ul>
+					
+					  <div>
+					  <input id="searchTextField" type="text" size="50">
+					  <input type="radio" name="type" id="changetype-all" checked="checked">
+					  <label for="changetype-all">All</label>
+					  
+					  <input type="radio" name="type" id="changetype-establishment">
+					  <label for="changetype-establishment">Establishments</label>
+					  
+					  <!-- <input type="radio" name="type" id="changetype-geocode">
+					  <label for="changetype-geocode">Geocodes</lable> -->
+					  </div>
+					  <div id="map_canvas"></div>
+					  
+
+				</div>
+				<!-- post -->
+				<div class="post">
+					<h2><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/bg-post-heading3.png" alt="love is on the air" /></h2>
+					<p>Coming in from our of town? If you're flying to the big city, we would recommend flying into LaGuardia (LGA) or Hohn F. Kennedy (JFK) Airport. We love the JetBlue terminal at LGA but also favor Virgin America which flys into JFK. Once you're here, we suggest taking a taxi to your hotel/destination to avoid getting lost and the conveinience is totally worth the money ($50-ish).</p>
+					<ul>
+						<li><a href="#">JET BLUE</a></li>
+						<li><a href="#">VIRGIN AMERICA</a></li>
+					</ul>
+				</div>
+				<!-- post -->
+				<div class="post">
+					<h2><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/bg-post-heading4.png" alt="hotel.,motel,.holiday..." /></h2>
+					<p>Here are a few suggestions on places to stay depending on your budget and your aesthetic preferences. Hopefully after our event, your trip to the City can be turned into a little vacation. Since it will be Columbus Day weekend, make sure you book your arrangements soon. Nothing appeal to you here? We'd recommend staying in either Williamsburg close to the Bedford L stop (one stop from the city) or in the City south of Times Square.  If you're not sure of the location just give us a shout.</p>
+				
+
+				</div>
+				
+				<!-- post -->
+				<a name="registry"></a>
+				<div class="post">
+					<h2><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/bg-post-heading5.png" alt="the gifts of love" /></h2>
+					<p>We've made it easy and compiled our registry into one called <a href="http://www.myregistry.com/visitors/giftlist.aspx?nowelcome=1&param=9&sid=f395bd5f-297c-48cd-9ee7-042991b6da6c" rel="popup standard 1000 700">myregistry.com</a>. Don't like any of the stuff we want and wouldn't want to give it to anyone? You can also help us by donating what ever you can to our honeymoon. Alexander's parents have graciously offered to help us out tremendously with our post-wedding travel. But one can never have too many couples massages. God knows we need them. Where are we going? We'd like to go somewhere pristine, off the grid, beachy, and with massages. No specific island yet. Did I say massages? Surely you know who is writing this :)</p>
+					<h3>AIR BnB</h3>
+					<p>Never heard of it you say? You will. It's a very affordable and imersive way to rent someone's entire apartment, loft, studio or just a room.</p>
+					<h3>LE JOLIE</h3>
+					<p>Hotel in Williamsburg, with a great view of the BQE (Brooklyn Queens Expressway) and close to our apartment.  Although we never stayed here, it comes recommended by friends and is fairly reasonable.</p>
+					<h3>THE ACE HOTEL</h3>
+					<p>In NYC and bit of a scene, but has a Stumptown coffee downstairs. A little pricey and in an upcoming area called NOMAD because it is north of Madison Park. Also close to the office where the romance began.</p>
+					<h3>The GERSHWIN HOTEL</h3>
+					<p>This place is funky and for those with more adventrous tastes. They definitely have rates that are reasonable for the intense artistic vibe this place exudes. Not for the faint of heart.</p>
+				</div>
+
+
+				
+				<!-- post -->
+				<div class="post">
+					<h2><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/bg-post-heading6.png" alt="our office romance" /></h2>
+					<img class="office-romance" src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/bg-office-romance.png" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" />
+				</div>
+				
+				<!-- post -->
+				<div class="post">
+					<h2><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/bg-post-heading5.png" alt="the gifts of love" /></h2>
+					<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="spendtherestofyourlifewith.me" num_posts="5" width="700"></fb:comments>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- footer -->
+	<div id="footer">
+		<!-- logos-list -->
+		<ul class="logos-list">
+			<li><a href="#location"><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/logo1.png" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></a></li>
+			<li><a rel="popup standard 450 450" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.spendtherestofyourlifewith.me&amp;text=Type here&amp;hashtags=NandA&amp;related=nicole_w_miller, alexanderrea"><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/logo2.png" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></a></li>
+			<li><a href="#"><img src="http://spendtherestofyourlifewithme.s3.amazonaws.com/images/logo3.png" alt="Nicole Miller & Alexander Rea Married October 7, 2011 - www.spendtherestofyourlifewith.me" /></a></li>
+		</ul>
+	
+	<!--
+	<div id="twitterFollow">
+	
+		<div id="twitterFollowInner">
+		<a href="http://twitter.com/alexanderrea" class="twitter-follow-button" data-button="grey" data-text-color="#FFFFFF" data-link-color="#818285" data-show-count="false">Follow Alexander Rea</a>
+		<a href="http://twitter.com/nicole_w_miller" class="twitter-follow-button" data-button="grey" data-text-color="#FFFFFF" data-link-color="#818285" data-show-count="false">Follow Nicole Miller</a>
+		<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+		</div>
+	
+	</div>
+	</div>
+	-->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9409061-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>
